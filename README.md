@@ -32,7 +32,7 @@ helm install dc2 hashicorp/consul --version "0.45.0" --values consul-values.yaml
 
 3. Deploy dashboard service on dc1
 
-kubectl apply -f counting/dashboard.yaml --context dc1
+kubectl apply -f countingapp/dashboard.yaml --context dc1
 
 4. Deploy counting service on dc2
 
