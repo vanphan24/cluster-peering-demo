@@ -117,7 +117,7 @@ kubectl apply -f acceptor-for-dc2.yml --context dc1
 
 # Optional - Connect to another Consul datacenter.
 
-You may want to create another Peering Connection to a third Consul deployment on **dc3**. If so, the steps are similar. We will use a different app called **fake service* which has a **frontend** service connecting to a upstream **backend** service.
+You may want to create another Peering Connection to a third Consul deployment on **dc3**. If so, the steps are similar. We will use a different app called **fake app** which has a **frontend** service connecting to a upstream **backend** service.
 
 1. Deploy Consul dc3 to K8s cluster dc2. 
 ```
