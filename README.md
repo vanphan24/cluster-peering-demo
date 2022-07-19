@@ -35,12 +35,12 @@ helm install dc2 hashicorp/consul --version "0.45.0" --values consul-values.yml
 
 3. Deploy dashboard service on dc1
 ```
-kubectl apply -f countingapp/dashboard.yaml --context dc1
+kubectl apply -f countingapp/dashboard.yml --context dc1
 ```
 
 4. Deploy counting service on dc2
 ```
-kubectl apply -f countingapp/counting.yaml --context dc2
+kubectl apply -f countingapp/counting.yml --context dc2
 ```
 
 # Create Peering Connections
@@ -124,12 +124,12 @@ You may want to create another Peering Connection to a third Consul deployment o
 kubectl config use-context dc3
 ```
 ```
-helm install dc3 hashicorp/consul --version "0.45.0" --values consul-values.yaml   
+helm install dc3 hashicorp/consul --version "0.45.0" --values consul-values.yml   
 ```
 
 2. Deploy frontend service on dc1
 ```
-kubectl apply -f fakeapp/frontend.yaml --context dc1
+kubectl apply -f fakeapp/frontend.yml --context dc1
 ```
 
 3. Deploy counting service on dc3
