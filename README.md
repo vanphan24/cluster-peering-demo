@@ -4,6 +4,8 @@ This demo will showcase Cluster Peering which Consul's ability to connect two Co
 
 In our demo, we will deploy Consul datacenters onto two different Kubernetes clusters named **dc1** and **dc2**. We will then deploy a counting app consisting of two different services, **dashboard** and **counting**. Each service will be deployed on different kubernetes cluster. We will create cluster peering connnections between the two Consul datacenters. We will then export the counting service from one Consul datacenter to the other Consul datacenter, allowing the dashboard service to connect to the upstream counting service.
 
+![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/tech-preview/images/Screen%20Shot%202022-07-18%20at%208.59.15%20PM.png "Cluster Peering Demo")
+
 # Pre-reqs
 
 1. You have two Kubernetes clusters available. In this demo example, we will use Azure Kubernetes Service (AKS) but it can be applied to other K8s clusters.
@@ -118,6 +120,9 @@ kubectl apply -f acceptor-for-dc2.yml --context dc1
 # Optional - Connect to another Consul datacenter.
 
 You may want to create another Peering Connection to a third Consul deployment on **dc3**. If so, the steps are similar. We will use a different app called **fake app** which has a **frontend** service connecting to a upstream **backend** service.
+
+![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/tech-preview/images/Screen%20Shot%202022-07-18%20at%208.59.15%20PM.png "Cluster Peering Demo")
+
 
 1. Deploy Consul dc3 to K8s cluster dc2. 
 ```
