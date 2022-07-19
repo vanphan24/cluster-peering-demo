@@ -115,7 +115,7 @@ kubectl delete secret peering-token-dc2 --context dc2
 kubectl apply -f acceptor-for-dc2.yml --context dc1
 ```
 
-# Optional
+# Optional - Connect to another Consul datacenter.
 
 You may want to create another Peering Connection to a third Consul deployment on **dc3**. If so, the steps are similar. We will use a different app called **fake service* which has a **frontend** service connecting to a upstream **backend** service.
 
