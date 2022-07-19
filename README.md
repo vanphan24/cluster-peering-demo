@@ -232,7 +232,7 @@ The upstream annotation is pointing to *'counting.svc.dc2.peer:9001'*
         'consul.hashicorp.com/connect-service-upstreams': 'counting.svc.dc2.peer:9001'
 ```
 
-The upstream URL is set to *localhost:9002*  
+The upstream URL is set to *localhost:9001*  
 ```
   spec:
       containers:
