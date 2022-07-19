@@ -143,6 +143,11 @@ kubectl apply -f fakeapp/backend.yml --context dc3
 ```
 kubectl apply -f  acceptor-for-dc3.yml --context dc1
 ```
+5. Copy peering-token-dc3 from dc1 to dc3
+```
+kubectl get secret peering-token-dc3 --context dc1 -o yml | kubectl apply --context dc3 -f -
+```
+
 
 5. Create Peering Dialer on dc2 using the provided dialer-dc2.yml file.
 Note: This step will connect Consul on dc2 to Consul on dc1 using the peering-token
