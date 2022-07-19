@@ -22,7 +22,7 @@ Note: In our example, we will name our Kubernetes clusters **dc1** and **dc2**.
 kubectl config use-context dc1
 ```
 ```
-helm install dc1 hashicorp/consul --version "0.45.0" --values consul-values.yaml   
+helm install dc1 hashicorp/consul --version "0.45.0" --values consul-values.yml   
 ```
 
 2. Deploy Consul dc2 to K8s cluster dc2. 
@@ -30,7 +30,7 @@ helm install dc1 hashicorp/consul --version "0.45.0" --values consul-values.yaml
 kubectl config use-context dc2
 ```
 ```
-helm install dc2 hashicorp/consul --version "0.45.0" --values consul-values.yaml   
+helm install dc2 hashicorp/consul --version "0.45.0" --values consul-values.yml   
 ```
 
 3. Deploy dashboard service on dc1
@@ -60,7 +60,7 @@ kubectl get secrets --context dc1
 
 7. Copy peering-token-dc2 from dc1 to dc2
 ```
-kubectl get secret peering-token-dc2 --context dc1 -o yaml | kubectl apply --context dc2 -f -
+kubectl get secret peering-token-dc2 --context dc1 -o yml | kubectl apply --context dc2 -f -
 ```
 
 8. Create Peering Dialer on dc2 using the provided dialer-dc2.yml file.
@@ -134,7 +134,7 @@ kubectl apply -f fakeapp/frontend.yaml --context dc1
 
 3. Deploy counting service on dc3
 ```
-kubectl apply -f fakeapp/backend.yaml --context dc3
+kubectl apply -f fakeapp/backend.yml --context dc3
 ```
 
 # Create Peering Connections
