@@ -69,11 +69,11 @@ kubectl get secret peering-token-dc2 --context dc1 -o yaml | kubectl apply --con
 8. Create Peering Dialer on dc2 using the provided dialer-dc2.yml file.  
 Note: This step will establish dc2 as the Dialer and will connect Consul on dc2 to Consul on dc1 using the peering-token.
 ```
-kubectl apply -f  dialer-dc2.yml --context dc2
+kubectl apply -f  dialer-dc2.yaml --context dc2
 ```
 
-9. Export counting services from dc2 to dc1 using the provided exportedsvc-counting.yml file.
-This will allow the the counting service to be reachable by the dashboard service in the other Consul datacenter
+9. Export counting services from dc2 to dc1 using the provided exportedsvc-counting.yml file.  
+Note: This will allow the the counting service to be reachable by the dashboard service in the other Consul datacenter
 ```
 kubectl apply -f countingapp/exportedsvc-counting.yml --context dc2
 ```
