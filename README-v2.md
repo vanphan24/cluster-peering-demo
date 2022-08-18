@@ -35,17 +35,17 @@ helm install dc2 hashicorp/consul --version "0.47.1" --values consul-values.yaml
 
 3. Deploy dashboard service on dc1
 ```
-kubectl apply -f countingapp/dashboard.yml --context dc1
+kubectl apply -f countingapp/dashboard.yaml --context dc1
 ```
 
 4. Deploy counting service on dc2
 ```
-kubectl apply -f countingapp/counting.yml --context dc2
+kubectl apply -f countingapp/counting.yaml --context dc2
 ```
 
 # Create Peering Connections
 
-5. Create Peering Acceptor on dc1 using the provided acceptor-for-dc2.yml file.  
+5. Create Peering Acceptor on dc1 using the provided acceptor-for-dc2.yaml file.  
 Note: This step will establish dc1 as the Acceptor.
 ```
 kubectl apply -f  acceptor-on-dc1-for-dc2.yaml --context dc1
@@ -66,7 +66,7 @@ kubectl get secrets --context dc1
 kubectl get secret peering-token-dc2 --context dc1 -o yaml | kubectl apply --context dc2 -f -
 ```
 
-8. Create Peering Dialer on dc2 using the provided dialer-dc2.yml file.  
+8. Create Peering Dialer on dc2 using the provided dialer-dc2.yaml file.  
 Note: This step will establish dc2 as the Dialer and will connect Consul on dc2 to Consul on dc1 using the peering-token.
 ```
 kubectl apply -f  dialer-dc2.yaml --context dc2
@@ -92,10 +92,10 @@ Note: If it returns a result, then a peering connection has been established on 
 
 
 
-10. Export counting services from dc2 to dc1 using the provided exportedsvc-counting.yml file.  
+10. Export counting services from dc2 to dc1 using the provided exportedsvc-counting.yaml file.  
 Note: On the *data plane*, this will allow the the counting service to be reachable by the dashboard service in the other Consul datacenter
 ```
-kubectl apply -f countingapp/exportedsvc-counting.yml --context dc2
+kubectl apply -f countingapp/exportedsvc-counting.yaml --context dc2
 ```
 
 11. Using your browser, check the dashboard UI and confirm the number displayed is incrementing. Append port **:9002** to the browser URL.
@@ -115,7 +115,7 @@ If it increments, this means the dashboard is able to reach and display the curr
 
 1. Delete the Peering Dialer on dc2.
 ```
-kubectl delete -f  dialer-dc2.yml --context dc2
+kubectl delete -f  dialer-dc2.yaml --context dc2
 ```
 Note: The peering connection is removed but you may want to clean up some of the other resources.
 
@@ -126,7 +126,7 @@ kubectl delete secret peering-token-dc2 --context dc2
 
 3. Delete the Peering Acceptor on dc1. This will also remove the peering-token created on dc1.
 ```
-kubectl apply -f acceptor-for-dc2.yml --context dc1
+kubectl apply -f acceptor-for-dc2.yaml --context dc1
 ```
 
 # Optional - Connect to another Consul datacenter.
@@ -141,7 +141,7 @@ You may want to create another Peering Connection to a third Consul deployment o
 kubectl config use-context dc3
 ```
 ```
-helm install dc3 hashicorp/consul --version "0.45.0" --values consul-values.yml   
+helm install dc3 hashicorp/consul --version "0.45.0" --values consul-values.yaml   
 ```
 
 2. Deploy frontend service on dc1
