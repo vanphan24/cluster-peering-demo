@@ -158,19 +158,19 @@ helm install dc3 hashicorp/consul --version "0.47.1" --values consul-values.yaml
 
 2. Deploy frontend service on dc1
 ```
-kubectl apply -f fakeapp/frontend.yml --context dc1
+kubectl apply -f fakeapp/frontend.yaml --context dc1
 ```
 
 3. Deploy counting service on dc3
 ```
-kubectl apply -f fakeapp/backend.yml --context dc3
+kubectl apply -f fakeapp/backend.yaml --context dc3
 ```
 
 # Create Peering Connections
 
-4. Create Peering Acceptor on dc1 using the provided acceptor-for-dc3.yml file.
+4. Create Peering Acceptor on dc1 using the provided acceptor-on-dc1-for-dc3.yaml file.
 ```
-kubectl apply -f  acceptor-for-dc3.yml --context dc1
+kubectl apply -f  acceptor-on-dc1-for-dc3.yaml --context dc1
 ```
 5. Copy peering-token-dc3 from dc1 to dc3
 ```
@@ -178,10 +178,10 @@ kubectl get secret peering-token-dc3 --context dc1 -o yaml | kubectl apply --con
 ```
 
 
-5. Create Peering Dialer on dc3 using the provided dialer-dc3.yml file.
+5. Create Peering Dialer on dc3 using the provided dialer-dc3.yaml file.
 Note: This step will connect Consul on dc2 to Consul on dc1 using the peering-token
 ```
-kubectl apply -f  dialer-dc3.yml --context dc3
+kubectl apply -f  dialer-dc3.yaml --context dc3
 ```
 
 9. Export counting services from dc3 to dc1 using the provided exportedsvc-backend.yml file.
