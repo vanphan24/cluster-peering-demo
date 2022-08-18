@@ -1,6 +1,6 @@
 # Cluster peering demo
 
-This demo will showcase Cluster Peering which Consul's ability to connect two Consul datacenters together allowing services to be discovered and connected between multiple different Consul datacenters that may be own/managed by multiple different teams.
+This demo will showcase Cluster Peering which Consul's ability to connect two Consul datacenters together allowing services to be discovered and connected between multiple different Consul datacenters that may be own/managed by multiple different teams. To create a peering connection, we must establish one datacenter as the *Acceptor* and one as the *Dialer*. The Accepter will create a token, which will be given to the Dialer. The Dialer will use the token to connect to the Acceptor, which then establish a Peering connection.
 
 In our demo, we will deploy Consul datacenters onto two different Kubernetes clusters named **dc1** and **dc2**. We will then deploy a counting app consisting of two different services, **dashboard** and **counting**. Each service will be deployed on different kubernetes cluster. We will create cluster peering connnections between the two Consul datacenters. We will then export the counting service from one Consul datacenter to the other Consul datacenter, allowing the dashboard service to connect to the upstream counting service.
 
@@ -24,7 +24,7 @@ Note: In our example, we will name our Kubernetes clusters **dc1** and **dc2**.
 kubectl config use-context dc1
 ```
 ```
-helm install dc1 hashicorp/consul --version "0.45.0" --values consul-values.yml   
+helm install dc4 hashicorp/consul --version "0.47.1" --values consul-values.yaml                                  
 ```
 
 2. Deploy Consul dc2 to K8s cluster dc2. 
@@ -32,7 +32,7 @@ helm install dc1 hashicorp/consul --version "0.45.0" --values consul-values.yml
 kubectl config use-context dc2
 ```
 ```
-helm install dc2 hashicorp/consul --version "0.45.0" --values consul-values.yml   
+helm install dc4 hashicorp/consul --version "0.47.1" --values consul-values.yaml                                  
 ```
 
 3. Deploy dashboard service on dc1
@@ -47,26 +47,27 @@ kubectl apply -f countingapp/counting.yml --context dc2
 
 # Create Peering Connections
 
-5. Create Peering Acceptor on dc1 using the provided acceptor-for-dc2.yml file.
+5. Create Peering Acceptor on dc1 using the provided acceptor-for-dc2.yml file. 
+Note: This step will establish dc1 as the Acceptor.
 ```
-kubectl apply -f  acceptor-for-dc2.yml --context dc1
+kubectl apply -f  acceptor-on-dc1-for-dc2.yaml --context dc1
 ```
 
 6. Notice this will create a CRD called peeringacceptors and a secret called peering-token-dc2.
 ```
-kubectl get peeringacceptors --context dc1
+kubectl get peeringacceptors --context dc1.
 ```
 ```
 kubectl get secrets --context dc1
 ```
 
-7. Copy peering-token-dc2 from dc1 to dc2
+7. Copy peering-token-dc2 from dc1 to dc2.
 ```
 kubectl get secret peering-token-dc2 --context dc1 -o yaml | kubectl apply --context dc2 -f -
 ```
 
-8. Create Peering Dialer on dc2 using the provided dialer-dc2.yml file.
-Note: This step will connect Consul on dc2 to Consul on dc1 using the peering-token
+8. Create Peering Dialer on dc2 using the provided dialer-dc2.yml file. 
+Note: This step will establish dc2 as the Dialer and will connect Consul on dc2 to Consul on dc1 using the peering-token.
 ```
 kubectl apply -f  dialer-dc2.yml --context dc2
 ```
@@ -82,7 +83,7 @@ kubectl apply -f countingapp/exportedsvc-counting.yml --context dc2
 kubectl exec dc1-consul-server-0 --context dc1 -- curl "localhost:8500/v1/health/connect/counting?peer=dc2" | jq
 ```
 
-Note: If it returns a result, then a peering connection has been established. If there is no returned result, then a misconfig may have occurred. 
+Note: If it returns a result, then a peering connection has been established on the *control plane*. If there is no returned result, then a misconfig may have occurred. 
 - Check that networks between the two Kubernetes clusters are routeable. 
 - See Trouble shooting section to check the no errors occurred between dialer and acceptor.
 - See Trouble shooting section to 
@@ -95,7 +96,7 @@ kubectl get service dashboard --context dc1
 
 Example url is **http://20.237.4.200:9002**
 
-If it increments, this means the dashboard is able to reach and display the current count on the counting service.
+If it increments, this means the dashboard is able to reach and display the current count on the counting service. This confirms that the peering connection is also established on the *data plane*.
 
 ![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/tech-preview/images/Screen%20Shot%202022-07-18%20at%209.08.49%20PM.png "Cluster Peering Demo")
 
