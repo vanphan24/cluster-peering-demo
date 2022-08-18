@@ -87,9 +87,9 @@ kubectl exec dc1-consul-server-0 --context dc1 -- curl "localhost:8500/v1/health
 ```
 
 Note: If it returns a result, then a peering connection has been established on the *control plane*. If there is no returned result, then a misconfig may have occurred. 
-- Check that networks between the two Kubernetes clusters are routeable. 
+
 - See Trouble shooting section to check the no errors occurred between dialer and acceptor.
-- See Trouble shooting section to 
+
 
 
 10. Export counting services from dc2 to dc1 using the provided exportedsvc-counting.yml file.  
