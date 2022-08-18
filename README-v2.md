@@ -184,7 +184,7 @@ Note: This step will connect Consul on dc2 to Consul on dc1 using the peering-to
 kubectl apply -f  dialer-dc3.yaml --context dc3
 ```
 
-9. Export counting services from dc3 to dc1 using the provided exportedsvc-backend.yml file.
+9. Export counting services from dc3 to dc1 using the provided exportedsvc-backend.yaml file.
 This will allow the the counting service to be reachable by the dashboard service in the other Consul datacenter
 ```
 kubectl apply -f fakeapp/exportedsvc-backend.yaml --context dc3
