@@ -51,7 +51,7 @@ Note: This step will establish dc1 as the Acceptor.
 kubectl apply -f  acceptor-on-dc1-for-dc2.yaml --context dc1
 ```
 
-6. Notice this will create a CRD called peeringacceptors and a secret called peering-token-dc2.
+6. Notice this will create a CRD called *peeringacceptors* and a secret called *peering-token-dc2*.
 ```
 kubectl get peeringacceptors --context dc1
 NAME   SYNCED   LAST SYNCED   AGE
