@@ -198,8 +198,8 @@ This will allow the the counting service to be reachable by the dashboard servic
 kubectl apply -f fakeapp/exportedsvc-backend.yaml --context dc3
 ```
 
-10. Using your browser, check the frontend UI to confirm the frontend service can reach the backend service. Append port **:9090** to the browser URL.
-You can get the dashboard UI's public IP address with
+10. Using your browser, check the frontend UI to confirm the frontend service can reach the backend service. Append **:9090/ui** to the EXTERNAL-IP address for the browser URL.
+You can get the dashboard UI's EXTERNAL IP address with
 ```
 kubectl get service frontend --context dc1
 ```
