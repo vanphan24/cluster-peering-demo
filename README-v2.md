@@ -4,7 +4,7 @@ This demo will showcase Cluster Peering which Consul's ability to connect two Co
 
 In our demo, we will deploy Consul datacenters onto two different Kubernetes clusters named **dc1** and **dc2**. We will then deploy a counting app consisting of two different services, **dashboard** and **counting**. Each service will be deployed on different kubernetes cluster. We will create cluster peering connnections between the two Consul datacenters. We will then export the counting service from one Consul datacenter to the other Consul datacenter, allowing the dashboard service to connect to the upstream counting service.
 
-![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/tech-preview/images/Screen%20Shot%202022-07-18%20at%209.03.59%20PM.png "Cluster Peering Demo")
+![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/images/Screen%20Shot%202022-08-18%20at%2010.40.40%20AM.png "Cluster Peering Demo")
 
 # Pre-reqs
 
