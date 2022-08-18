@@ -111,7 +111,7 @@ Alternatively, you can run the below command, which will check that Consul serve
 kubectl exec dc1-consul-server-0 --context dc1 -- curl "localhost:8500/v1/health/connect/counting?peer=dc2" | jq
 ```
 
-Note: If it returns a result, then a peering connection has been established on the *control plane*. If there is no returned result, then a misconfig may have occurred. 
+Note: If it returns a result, then a peering connection has been established. If there is no returned result, then a misconfig may have occurred. 
 
 - See Trouble shooting section to check the no errors occurred between dialer and acceptor.
 
