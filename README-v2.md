@@ -108,7 +108,7 @@ Example url is **http://20.237.4.200:9002**
 
 If it increments, this means the dashboard is able to reach and display the current count on the counting service. This confirms that the peering connection is also established on the *data plane*.
 
-![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/tech-preview/images/Screen%20Shot%202022-07-18%20at%209.08.49%20PM.png "Cluster Peering Demo")
+![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/images/Screen%20Shot%202022-07-18%20at%209.08.49%20PM.png)
 
 
 # Remove Peering Connection
@@ -133,7 +133,7 @@ kubectl apply -f acceptor-for-dc2.yaml --context dc1
 
 You may want to create another Peering Connection to a third Consul deployment on **dc3**. If so, the steps are similar. We will use a different app called **fake app** which has a **frontend** service connecting to a upstream **backend** service.
 
-![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/tech-preview/images/Screen%20Shot%202022-07-18%20at%208.59.15%20PM.png "Cluster Peering Demo")
+![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/images/Screen%20Shot%202022-07-18%20at%208.59.15%20PM.png)
 
 
 1. Deploy Consul dc3 to K8s cluster dc2. 
