@@ -276,3 +276,4 @@ The upstream URL is set to *localhost:9001*
           value: 'http://localhost:9001'
 ```
   
+5. Check you Intentions and make sure you are allowing services to connect between the Peers (and partitions if they exist).
