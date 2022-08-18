@@ -187,7 +187,7 @@ kubectl apply -f  dialer-dc3.yaml --context dc3
 9. Export counting services from dc3 to dc1 using the provided exportedsvc-backend.yml file.
 This will allow the the counting service to be reachable by the dashboard service in the other Consul datacenter
 ```
-kubectl apply -f fakeapp/exportedsvc-backend.yml --context dc3
+kubectl apply -f fakeapp/exportedsvc-backend.yaml --context dc3
 ```
 
 10. Using your browser, check the frontend UI to confirm the frontend service can reach the backend service. Append port **:9090** to the browser URL.
