@@ -9,9 +9,7 @@ In our demo, we will deploy Consul datacenters onto two different Kubernetes clu
 # Pre-reqs
 
 1. You have two Kubernetes clusters available. In this demo example, we will use Azure Kubernetes Service (AKS) but it can be applied to other K8s clusters.
-2. Make sure the network between the two kubernetes clusters is routable/connected. For example, if you are deploying each Kubernetes cluster on a different VPC/VNET, make sure you configure VPC/VNET peering between the VPC/VNETs. 
-  - If you are using AKS, make sure you select the Azure CNI instead of kubenet.
-  - Note these requirements may not not longer be needed by GA.
+
   
   
   
