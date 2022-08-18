@@ -10,9 +10,9 @@ In our demo, we will deploy Consul datacenters onto two different Kubernetes clu
 
 1. You have two Kubernetes clusters available. In this demo example, we will use Azure Kubernetes Service (AKS) but it can be applied to other K8s clusters.
 2. Update your helm repo:
-'''
+```
 helm repo update
-'''
+```
   
   
   
