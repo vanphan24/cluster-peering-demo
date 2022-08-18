@@ -9,7 +9,9 @@ In our demo, we will deploy Consul datacenters onto two different Kubernetes clu
 # Pre-reqs
 
 1. You have two Kubernetes clusters available. In this demo example, we will use Azure Kubernetes Service (AKS) but it can be applied to other K8s clusters.
-2. Add or update your hashicorp helm repo:
+
+    Note: If using AKS, you can use the Kubenet CNI or the Azure CNI. The Consul control plane and data plane will use Load Balancers to communicate between Consul datacenters, therefore no direcgt network connections (ie peering connections) are required. 
+3. Add or update your hashicorp helm repo:
 
 ```
 helm repo add hashicorp https://helm.releases.hashicorp.com
