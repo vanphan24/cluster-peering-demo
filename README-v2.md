@@ -45,7 +45,7 @@ kubectl apply -f countingapp/counting.yml --context dc2
 
 # Create Peering Connections
 
-5. Create Peering Acceptor on dc1 using the provided acceptor-for-dc2.yml file. 
+5. Create Peering Acceptor on dc1 using the provided acceptor-for-dc2.yml file.  
 Note: This step will establish dc1 as the Acceptor.
 ```
 kubectl apply -f  acceptor-on-dc1-for-dc2.yaml --context dc1
@@ -66,7 +66,7 @@ kubectl get secrets --context dc1
 kubectl get secret peering-token-dc2 --context dc1 -o yaml | kubectl apply --context dc2 -f -
 ```
 
-8. Create Peering Dialer on dc2 using the provided dialer-dc2.yml file. 
+8. Create Peering Dialer on dc2 using the provided dialer-dc2.yml file.  
 Note: This step will establish dc2 as the Dialer and will connect Consul on dc2 to Consul on dc1 using the peering-token.
 ```
 kubectl apply -f  dialer-dc2.yml --context dc2
