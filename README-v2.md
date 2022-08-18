@@ -53,7 +53,7 @@ kubectl apply -f  acceptor-on-dc1-for-dc2.yaml --context dc1
 
 6. Notice this will create a CRD called peeringacceptors and a secret called peering-token-dc2.
 ```
-kubectl get peeringacceptors --context dc1.
+kubectl get peeringacceptors --context dc1
 ```
 ```
 kubectl get secrets --context dc1
