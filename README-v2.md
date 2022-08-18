@@ -101,9 +101,9 @@ Note: On the *data plane*, this will allow the the counting service to be reacha
 kubectl apply -f countingapp/exportedsvc-counting.yaml --context dc2
 ```
 
-11.  Confirm on the Consul web UI on ***dc1*** that the *counting* service is now visible on the ***Services*** tab.
+11.  Confirm on the Consul web UI on ***dc1*** that the *counting* service is now visible on the ***Services*** tab. Notice that it shows the counting service is imported from ***dc2***
 
-
+![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/images/Screen%20Shot%202022-08-18%20at%201.15.40%20PM.png)
 
 
 Alternatively, you can run the below command, which will check that Consul server on dc1 can perform health check on counting service on dc2
@@ -118,7 +118,7 @@ Note: If it returns a result, then a peering connection has been established on 
 
 
 
-11. Using your browser, check the dashboard UI and confirm the number displayed is incrementing. Append port **:9002** to the browser URL.
+12. Using your browser, check the dashboard UI and confirm the number displayed is incrementing. Append port **:9002** to the browser URL.
 You can get the dashboard UI's EXTERNAL IP address with
 ```
 kubectl get service dashboard --context dc1
