@@ -22,7 +22,7 @@ Note: In our example, we will name our Kubernetes clusters **dc1** and **dc2**.
 kubectl config use-context dc1
 ```
 ```
-helm install dc4 hashicorp/consul --version "0.47.1" --values consul-values.yaml                                  
+helm install dc1 hashicorp/consul --version "0.47.1" --values consul-values.yaml                                  
 ```
 
 2. Deploy Consul dc2 to K8s cluster dc2. 
@@ -30,7 +30,7 @@ helm install dc4 hashicorp/consul --version "0.47.1" --values consul-values.yaml
 kubectl config use-context dc2
 ```
 ```
-helm install dc4 hashicorp/consul --version "0.47.1" --values consul-values.yaml                                  
+helm install dc2 hashicorp/consul --version "0.47.1" --values consul-values.yaml                                  
 ```
 
 3. Deploy dashboard service on dc1
