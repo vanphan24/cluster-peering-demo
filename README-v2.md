@@ -185,7 +185,7 @@ kubectl get service frontend --context dc1
 ```
 If frontend and backend boxes are in white, this means the front is able to reach the backend service. If the boxes are red, then there is no connection. See Troubleshooting section.
 
-![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/tech-preview/images/Screen%20Shot%202022-07-18%20at%209.11.37%20PM.png "Cluster Peering Demo")
+![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/images/Screen%20Shot%202022-07-18%20at%209.11.37%20PM.png)
 
 # Troubleshooting.
 
