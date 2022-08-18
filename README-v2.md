@@ -72,13 +72,16 @@ Note: This step will establish dc2 as the Dialer and will connect Consul on dc2 
 kubectl apply -f  dialer-dc2.yaml --context dc2
 ```
 
-9. Export counting services from dc2 to dc1 using the provided exportedsvc-counting.yml file.  
-Note: This will allow the the counting service to be reachable by the dashboard service in the other Consul datacenter
-```
-kubectl apply -f countingapp/exportedsvc-counting.yml --context dc2
-```
+9. Confirm on the Consul web UI that a peering connection has been established:
 
-10. Check Consul server on dc1 to see that it can perform health check on counting service on dc2
+  a Run *kubectl get service --context dc1*  to retreive the Consul's UI's EXTERNAL-IP address.
+  b. Open a browser and go to the Consul UI using the Consul UI's EXTERNAL-IP address. 
+  c. Navigate to the ***Peers*** tab on the left hand side and confirm that ***dc2*** is shown as a peer. 
+
+
+![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/images/Screen%20Shot%202022-08-18%20at%2011.28.22%20AM.png)
+
+ Alternatively, you can run the below command, which will check that Consul server on dc1 can perform health check on counting service on dc2
 ```
 kubectl exec dc1-consul-server-0 --context dc1 -- curl "localhost:8500/v1/health/connect/counting?peer=dc2" | jq
 ```
@@ -88,8 +91,15 @@ Note: If it returns a result, then a peering connection has been established on 
 - See Trouble shooting section to check the no errors occurred between dialer and acceptor.
 - See Trouble shooting section to 
 
+
+10. Export counting services from dc2 to dc1 using the provided exportedsvc-counting.yml file.  
+Note: On the *data plane*, this will allow the the counting service to be reachable by the dashboard service in the other Consul datacenter
+```
+kubectl apply -f countingapp/exportedsvc-counting.yml --context dc2
+```
+
 11. Using your browser, check the dashboard UI and confirm the number displayed is incrementing. Append port **:9002** to the browser URL.
-You can get the dashboard UI's public IP address with
+You can get the dashboard UI's EXTERNAL IP address with
 ```
 kubectl get service dashboard --context dc1
 ```
