@@ -126,7 +126,7 @@ kubectl delete secret peering-token-dc2 --context dc2
 
 3. Delete the Peering Acceptor on dc1. This will also remove the peering-token created on dc1.
 ```
-kubectl apply -f acceptor-for-dc2.yaml --context dc1
+kubectl delete -f acceptor-on-dc1-for-dc2.yaml --context dc1
 ```
 
 # Optional - Connect to another Consul datacenter.
@@ -141,7 +141,7 @@ You may want to create another Peering Connection to a third Consul deployment o
 kubectl config use-context dc3
 ```
 ```
-helm install dc3 hashicorp/consul --version "0.45.0" --values consul-values.yaml   
+helm install dc3 hashicorp/consul --version "0.47.1" --values consul-values.yaml   
 ```
 
 2. Deploy frontend service on dc1
