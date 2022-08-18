@@ -61,7 +61,7 @@ dc2    True     2m46s         2m47s
 kubectl get secrets --context dc1
 ```
 
-7. Copy peering-token-dc2 from dc1 to dc2.
+7. Copy *peering-token-dc2* from dc1 to dc2.
 ```
 kubectl get secret peering-token-dc2 --context dc1 -o yaml | kubectl apply --context dc2 -f -
 ```
