@@ -277,3 +277,5 @@ The upstream URL is set to *localhost:9001*
 ```
   
 5. Check you Intentions and make sure you are allowing services to connect between the Peers (and partitions if they exist).
+    
+  ![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/images/Screen%20Shot%202022-08-18%20at%202.11.55%20PM.png)
