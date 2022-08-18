@@ -74,9 +74,9 @@ kubectl apply -f  dialer-dc2.yaml --context dc2
 
 9. Confirm on the Consul web UI that a peering connection has been established:
 
-  a Run *kubectl get service --context dc1*  to retreive the Consul's UI's EXTERNAL-IP address.
-  b. Open a browser and go to the Consul UI using the Consul UI's EXTERNAL-IP address. 
-  c. Navigate to the ***Peers*** tab on the left hand side and confirm that ***dc2*** is shown as a peer. 
+  a. Run *kubectl get service --context dc1*  to retreive the Consul's UI's EXTERNAL-IP address.  
+  b. Open a browser and go to the Consul UI using the Consul UI's EXTERNAL-IP address.   
+  c. Navigate to the ***Peers*** tab on the left hand side and confirm that ***dc2*** is shown as a peer.   
 
 
 ![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/images/Screen%20Shot%202022-08-18%20at%2011.28.22%20AM.png)
