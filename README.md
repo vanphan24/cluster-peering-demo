@@ -29,7 +29,7 @@ helm repo update hashicorp
 Note: In our example, we will name our Kubernetes clusters **dc1** and **dc2**.
 
 
-1. Deploy Consul dc1 to K8s cluster dc1. 
+1. Nagivate to the **1.13.1-GA** folder. Deploy Consul dc1 to K8s cluster dc1. 
 ```
 kubectl config use-context dc1
 ```
