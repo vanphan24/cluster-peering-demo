@@ -13,7 +13,7 @@ In our demo, we will deploy Consul datacenters onto two different Kubernetes clu
     Note: 
     - If using AKS, you can use the Kubenet CNI or the Azure CNI. The Consul control plane and data plane will use Load Balancers to communicate between Consul datacenters.
     - Since Load Balancers are used on both control plane and data plane, each datacenter can reside on different networks (VNETS, VPCs). No direct network connections (ie peering connections) are required. 
-3. Add or update your hashicorp helm repo:
+2. Add or update your hashicorp helm repo:
 
 ```
 helm repo add hashicorp https://helm.releases.hashicorp.com
@@ -23,7 +23,7 @@ or
 helm repo update hashicorp
 ```
   
-4. Clone git repo
+3. Clone git repo
 ```
 git clone https://github.com/vanphan24/cluster-peering-demo.git
 ```
