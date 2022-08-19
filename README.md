@@ -23,7 +23,10 @@ or
 helm repo update hashicorp
 ```
   
-  
+4. Clone git repo
+```
+git clone https://github.com/vanphan24/cluster-peering-demo.git
+```
   
 # Deploy Consul on each Kubernetes cluster.
 Note: In our example, we will name our Kubernetes clusters **dc1** and **dc2**.
