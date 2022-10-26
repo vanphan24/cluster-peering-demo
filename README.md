@@ -40,7 +40,7 @@ kubectl config use-context dc1
 helm install dc1 hashicorp/consul --version "0.47.1" --values consul-values.yaml                                  
 ```  
 
-Note: Run ```kubectl get crd``` and make sure that exportedservices.consul.hashicorp.com, peeringacceptors.consul.hashicorp.com, and peeringdialers.consul.hashicorp.com  exist. If not, you need to delete consul and redeploy.
+Note: Run ```kubectl get crd``` and make sure that exportedservices.consul.hashicorp.com, peeringacceptors.consul.hashicorp.com, and peeringdialers.consul.hashicorp.com  exist. If not, If not, run ```helm upgrade dc1 hashicorp/consul --version "0.47.1" --values consul-values.yaml```
 
 
 2. Deploy Consul dc2 to K8s cluster dc2. 
@@ -51,7 +51,7 @@ kubectl config use-context dc2
 helm install dc2 hashicorp/consul --version "0.47.1" --values consul-values.yaml                                  
 ```
 
-Note: Run ```kubectl get crd``` and make sure that exportedservices.consul.hashicorp.com, peeringacceptors.consul.hashicorp.com, and peeringdialers.consul.hashicorp.com  exist. If not, you need to delete consul and redeploy.
+Note: Run ```kubectl get crd``` and make sure that exportedservices.consul.hashicorp.com, peeringacceptors.consul.hashicorp.com, and peeringdialers.consul.hashicorp.com  exist. If not, run ```helm upgrade dc2 hashicorp/consul --version "0.47.1" --values consul-values.yaml```
 
 3. Deploy dashboard service on dc1
 ```
@@ -232,8 +232,8 @@ or
 ```
 Error from server (NotFound): error when creating "exportedsvc-counting.yaml": the server could not find the requested resource (post exportedservices.consul.hashicorp.com)
 ```
-Then you will need to redeploy Consul b/c the Consul deployment did not completely deploy all the CRDs needed for Consul. You can run ```kubectl get crd``` and notice they are missing.
-
+If so, Consul deployment did not completely deploy all the CRDs needed for Consul. You can run ```kubectl get crd``` and notice they are missing.
+Run ```helm upgrade <name> hashicorp/consul --version "0.47.1" --values consul-values.yaml```
 
 2. Check that there are no errors when trying to establish the peering connection:
 ```
