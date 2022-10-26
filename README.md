@@ -39,6 +39,8 @@ kubectl config use-context dc1
 ```
 helm install dc1 hashicorp/consul --version "0.47.1" --values consul-values.yaml                                  
 ```
+Note: Run ```kubectl get crd`` and make sure that exportedservices.consul.hashicorp.com, peeringacceptors.consul.hashicorp.com, and peeringdialers.consul.hashicorp.com  exist. If not, you need to delete consul and redeploy.
+
 
 2. Deploy Consul dc2 to K8s cluster dc2. 
 ```
@@ -47,6 +49,8 @@ kubectl config use-context dc2
 ```
 helm install dc2 hashicorp/consul --version "0.47.1" --values consul-values.yaml                                  
 ```
+
+Note: Run ```kubectl get crd`` and make sure that exportedservices.consul.hashicorp.com, peeringacceptors.consul.hashicorp.com, and peeringdialers.consul.hashicorp.com  exist. If not, you need to delete consul and redeploy.
 
 3. Deploy dashboard service on dc1
 ```
