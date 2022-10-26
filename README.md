@@ -212,7 +212,25 @@ If frontend and backend boxes are in white, this means the front is able to reac
 
 # Troubleshooting.
 
-1. Check that there are no errors when trying to establish the peering connection:
+**Establishing Peering** 
+
+1. Peering aconnection with dialer and acceptor yamp files.
+If you see this error:
+```
+Error from server (NotFound): error when creating "acceptor-on-dc1-for-dc2.yaml": the server could not find the requested resource (post peeringacceptors.consul.hashicorp.com)
+```
+or
+```
+Error from server (NotFound): error when creating "dialer-dc2.yaml": the server could not find the requested resource (post peeringdialers.consul.hashicorp.com)
+```
+or
+```
+Error from server (NotFound): error when creating "exportedsvc-counting.yaml": the server could not find the requested resource (post exportedservices.consul.hashicorp.com)
+```
+Then you will need to redeploy Consul b/c the Consul deployment did not completely deploy all the CRDs needed for Consul. You can run ```kubectl get crd``` and notice they are missing.
+
+
+2. Check that there are no errors when trying to establish the peering connection:
 ```
 kubectl logs dc1-consul-server-0 --context dc1 | grep agent.grpc-api.peer
 ```
@@ -227,14 +245,14 @@ kubectl logs dc3-consul-server-0 --context dc3 | grep agent.grpc-api.peer
 
 If no errors in the logs, the peering connection is likelt established.
 
-2. Check that you have exported your counting service from dc2 to dc1.
+3. Check that you have exported your counting service from dc2 to dc1.
 ```
 kubectl logs dc2-consul-server-0 --context dc2 | grep export
 2022-07-18T15:02:05.371Z [TRACE] agent.grpc-api.peering.stream.subscriptions: sending public event: peer_id=00345afc-ebf1-a608-e0bd-56cc42e32b23 peer_name=dc1 correlationID=exported-service:counting-sidecar-proxy
 2022-07-18T15:02:05.371Z [TRACE] agent.grpc-api.peering.stream.subscriptions: sending public event: peer_id=00345afc-ebf1-a608-e0bd-56cc42e32b23 peer_name=dc1 correlationID=exported-service:counting
 ```
 
-3. Check that dc1 can reach perform health check on upstream service of dc2 or dc3
+4. Check that dc1 can reach perform health check on upstream service of dc2 or dc3
 ```
 kubectl exec dc1-consul-server-0 --context dc1 -- curl "localhost:8500/v1/health/connect/counting?peer=dc2" | jq
 ```
@@ -255,7 +273,7 @@ kubectl exec dc1-consul-server-0 --context dc1 -- curl "localhost:8500/v1/health
 . . .
 ```
 
-4. If checks in previous steps look ok but your dashboard or frontend service cannot reach the counting or backend services, respectively, check that your dashboard or frontend service has the correct annotations on deployment, and the upstream URL is set to *localhost:<port>*
+5. If checks in previous steps look ok but your dashboard or frontend service cannot reach the counting or backend services, respectively, check that your dashboard or frontend service has the correct annotations on deployment, and the upstream URL is set to *localhost:<port>*
 
 Example for the counting app: 
 The upstream annotation is pointing to *'counting.svc.dc2.peer:9001'*
@@ -279,6 +297,6 @@ The upstream URL is set to *localhost:9001*
           value: 'http://localhost:9001'
 ```
   
-5. Check you Intentions and make sure you are allowing services to connect between the Peers (and partitions if they exist).
+6. Check you Intentions and make sure you are allowing services to connect between the Peers (and partitions if they exist).
     
   ![alt text](https://github.com/vanphan24/cluster-peering-demo/blob/main/images/Screen%20Shot%202022-08-18%20at%202.11.55%20PM.png)
